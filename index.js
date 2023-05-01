@@ -72,7 +72,7 @@ function displayItems(item){
     newEl.textContent = itemValue
 
 
-    newEl.addEventListener("click",function(){
+    newEl.addEventListener("dblclick",function(){
         let exactIdDB = ref(database,`shopping-items/${itemID}`)
         
         remove(exactIdDB)
