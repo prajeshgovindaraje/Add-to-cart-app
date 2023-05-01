@@ -16,29 +16,37 @@ let inputField = document.getElementById("input-field")
 
 addToCart.addEventListener("click",function(){
     let inpValue = inputField.value
-    console.log(inpValue)
+    
+    if(inpValue !== ""){
+        console.log(inpValue)
     push(address,inpValue)
 
 
 
     clearInputField()
+    }
 
     
 })
 
 onValue(address,function(snapshot){
 
-    let itemsArray = Object.entries(snapshot.val())
-    console.log(itemsArray)
-    clearItemList()
-
-    for(let i = 0; i < itemsArray.length; i++){
-        let currentArrayItem = itemsArray[i]
-        let currentArrayItemValue = currentArrayItem[1]
-        let currentArrayItemID = currentArrayItem[0]
-        displayItems(currentArrayItem)
-
-
+    if(snapshot.exists()){
+        let itemsArray = Object.entries(snapshot.val())
+        console.log(itemsArray)
+        clearItemList()
+    
+        for(let i = 0; i < itemsArray.length; i++){
+            let currentArrayItem = itemsArray[i]
+            let currentArrayItemValue = currentArrayItem[1]
+            let currentArrayItemID = currentArrayItem[0]
+            displayItems(currentArrayItem)
+    
+    
+        }
+    }
+    else{
+        listEl.innerHTML = ""
     }
 })
 
